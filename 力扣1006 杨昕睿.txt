@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int clumsy(int N) {
+        int x,sum=0,part,ok=1;
+	for(int i=N,count=1;i>0;i--,count++)
+	{
+		x=count%4;
+		switch(x)
+		{
+		    case 1:	part=i;break;
+			case 2:	part*=i;break;
+			case 3:	part/=i;break;
+			case 0:	sum+=i;break;
+		}
+		if(x==0||i==1)
+		{
+			if(ok==1)
+			{
+				sum+=part;
+				ok=0;
+			}
+			else sum-=part;
+		}
+	}
+        return sum;
+    }
+};
