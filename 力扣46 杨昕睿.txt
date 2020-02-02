@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> visited(nums.size(),0);
+        vector<int> temp;
+        fun(nums,visited,temp,res);
+        return res;
+    }
+    
+    void fun(const vector<int> &nums,vector<int> visited,vector<int> temp,vector<vector<int>> &res)
+    {
+        if(temp.size()==nums.size())
+        {
+            res.push_back(temp);
+            return;
+        }
+        for(int i=0;i<nums.size();++i)
+        {
+            if(1==visited[i]) continue;
+            temp.push_back(nums[i]);
+            visited[i]=1;
+            fun(nums,visited,temp,res);
+            temp.pop_back();
+            visited[i]=0;
+        }
+    }
+};

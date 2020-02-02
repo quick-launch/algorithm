@@ -1,0 +1,30 @@
+class Solution {
+public:
+vector<string> mem = { "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+void dfs(vector <string>&res, string digits, int index_len, string s)
+{
+	if (index_len == digits.size())
+	{
+		res.push_back(s);
+	}
+	else
+	{
+		int pos = digits[index_len] - '2';
+		for (int i = 0; i < mem[pos].length(); i++)
+		{
+			s += mem[pos][i];
+			dfs(res, digits, index_len + 1, s);
+			s.pop_back();
+		}
+	}
+}
+vector<string> letterCombinations(string digits)
+{
+	vector <string>res;
+	if (!digits.length())
+		return res;
+	else
+		dfs(res, digits, 0, "");
+	return res;
+}
+};

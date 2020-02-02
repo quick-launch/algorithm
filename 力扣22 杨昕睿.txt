@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> re;
+        generateAll("",re,n,n);
+        return re;
+    }
+    void generateAll(string subs,vector<string>& re,int left,int right) //&引用
+    {
+        if(left>right) return ;
+        if(left==0 && right==0)
+        {
+            re.push_back(subs);
+            return ;
+        }
+        if(left>0) generateAll(subs+"(",re,left-1,right);
+        if(right>0) generateAll(subs+")",re,left,right-1);
+        
+    }
+};
